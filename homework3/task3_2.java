@@ -34,7 +34,7 @@ public class task3_2 {
         getLowThanMedian(str);
     }
     
-    public static int getMedian(String ... words) {
+    private static int getMedian(String ... words) {
         int median = 0;
         for (String word : words) {
             median += word.length();
@@ -42,7 +42,7 @@ public class task3_2 {
         return median/words.length;
     }
     
-    public static void getLowThanMedian(String ... words) {
+    private static void getLowThanMedian(String ... words) {
         int median = getMedian(words);
         System.out.println("Median is "+median);
         

@@ -34,7 +34,7 @@ public class task3_3 {
         onlySpecial(str);
     }
     
-    public static void onlySpecial (String ... words) {
+    private static void onlySpecial (String ... words) {
         System.out.println("Уникальные строки:");
         for (String word : words) {
             if (specialTest (word)){
@@ -48,7 +48,7 @@ public class task3_3 {
      * @param word - строка для проверки уникальности символов
      * @return true если в слове не повторяются символы
      */
-    public static boolean specialTest (String word) {
+    private static boolean specialTest (String word) {
         //Счетчик символа
         int k = 0;
         char [] ch = new char [word.length()];

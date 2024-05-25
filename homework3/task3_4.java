@@ -33,7 +33,7 @@ public class task3_4 {
         multyWord(str);
     }
     
-    public static void multyWord(String... words){
+    private static void multyWord(String... words){
         System.out.println("Удвоенные символы в строках:");
         String resault = "";
         for (String word: words ){

@@ -33,7 +33,7 @@ public class task3_1 {
     
     
     //Собственный метод для чтение строки по Шилдту
-    public static String getString() throws IOException {
+    private static String getString() throws IOException {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         String input = br.readLine();
@@ -41,7 +41,7 @@ public class task3_1 {
     }
     
     //void - для наглядности, в идеале возвращать String
-    public static void maxString(String ... words){
+    private static void maxString(String ... words){
         String maxN = words[0];
         for (String word : words) {
             if (maxN.length()<word.length()) {
@@ -51,7 +51,7 @@ public class task3_1 {
         System.out.println("Max String: " + maxN+" length: " + maxN.length());    
     }
     
-    public static void minString(String ... words){
+    private static void minString(String ... words){
         String maxN = words[0];
         for (String word : words) {
             if (maxN.length()>word.length()) {
