@@ -3,6 +3,10 @@ package homework7;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Спирин Кирилл
+ */
 public class task7_1 {
     
     private static final int WORKTIME = 120;
@@ -10,7 +14,7 @@ public class task7_1 {
     public static void  main (String [] args) {
         
         //Наполнить "полки" продуктами
-        Buyer.products();
+        Buyer.setProducts();
         
         for (int i = 0; i < WORKTIME; i++) {
             try {

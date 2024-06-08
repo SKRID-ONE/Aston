@@ -1,17 +1,20 @@
 package homework7;
 
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Спирин Кирилл
  */
 public class Buyer extends Thread implements IBuyer, IUseBasket  {
+    
     private static int count = 0;
     private int localCount;
     
-    private static HashMap <String, Double> goods = new HashMap<>();
-    private  HashMap <String, Double> basket = new HashMap<>();
+    private static final HashMap <String, Double> goods = new HashMap<>();
+    private HashMap <String, Double> basket = new HashMap<>();
     
     public Buyer (String name) {
         super(name);
@@ -24,24 +27,15 @@ public class Buyer extends Thread implements IBuyer, IUseBasket  {
         //Пришел в магазин
         enterToMarket();
         
-        //Выбор товара
-        try {
-            //Взял корзину
-            takeBasket();
-            
-            //Выбрал продукты 
-            Double chooseGoodsTime = (500+Math.random()*1500);
-            sleep(chooseGoodsTime.intValue());
-            chooseGoods();
-            
-            //Сложил продукты
-            Double putGoodsToBasketTime = (500+Math.random()*1500);
-            sleep(putGoodsToBasketTime.intValue());
-            putGoodsToBasket();
-        } catch (InterruptedException e) {
-            throw new RuntimeException("Продукты закончились :( ");
-        }
-        
+        //Взял корзину
+        takeBasket();
+
+        //Выбрал продукты 
+        chooseGoods();
+
+        //Сложил продукты
+        putGoodsToBasket();
+     
         //Вышел из магазина
         goOut();
     }
@@ -53,6 +47,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket  {
 
     @Override
     public void chooseGoods() {
+        //Время на операцию 0,5...2 секунды
+        Double chooseGoodsTime = (500+Math.random()*1500);
+        try {
+            sleep(chooseGoodsTime.intValue());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Buyer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         System.out.println("Покупатель "+localCount+" выбрал товар");
     }
 
@@ -68,7 +70,15 @@ public class Buyer extends Thread implements IBuyer, IUseBasket  {
 
     @Override
     public void putGoodsToBasket() {
-        //Количество товаров 1...4
+        //Время на операцию 0,5...2 секунды
+        Double putGoodsToBasketTime = (500+Math.random()*1500);
+        try {
+            sleep(putGoodsToBasketTime.intValue());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Buyer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Рандомное количество товаров 1...4
         Double nGoods = (1+Math.random()*4);
         int nGoodsInt = nGoods.intValue();
         
@@ -93,7 +103,10 @@ public class Buyer extends Thread implements IBuyer, IUseBasket  {
     }
     
     
-    public static void products() {
+    /**
+     * Метод заполняет HashMap продуктами.
+     */
+    public static void setProducts() {
         goods.put("Milk", 90.0);
         goods.put("Bread", 50.0);
         goods.put("Water", 30.0);
